@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // アセンブリに関する一般情報は以下の属性セットをとおして制御されます。
 // アセンブリに関連付けられている情報を変更するには、
 // これらの属性値を変更してください。
-[assembly: AssemblyTitle("table2jpg")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("table2image")]
+[assembly: AssemblyDescription("htmlのtableを画像化するツール")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("table2jpg")]
+[assembly: AssemblyCompany("kurema")]
+[assembly: AssemblyProduct("table2image")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

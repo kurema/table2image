@@ -79,6 +79,8 @@ namespace table2image
 
             public string DefaultExtension = ".jpeg";
 
+            public string Encoding = "sjis";
+
             public class Font
             {
                 public string Face= "游ゴシック";
@@ -144,7 +146,7 @@ namespace table2image
             public static Table LoadFile(string arg)
             {
                 string text;
-                using (var sr = new System.IO.StreamReader(arg, Encoding.GetEncoding(932)))
+                using (var sr = new System.IO.StreamReader(arg, Encoding.GetEncoding(CurrentSetting.Encoding)))
                 {
                     text = sr.ReadToEnd();
                 }
