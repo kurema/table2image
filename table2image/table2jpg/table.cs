@@ -58,15 +58,15 @@ namespace table2image {
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class tableTR {
         
-        private string[] itemsField;
+        private cellType[] itemsField;
         
         private ItemsChoiceType[] itemsElementNameField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("td", typeof(string))]
-        [System.Xml.Serialization.XmlElementAttribute("th", typeof(string))]
+        [System.Xml.Serialization.XmlElementAttribute("td", typeof(cellType))]
+        [System.Xml.Serialization.XmlElementAttribute("th", typeof(cellType))]
         [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
-        public string[] Items {
+        public cellType[] Items {
             get {
                 return this.itemsField;
             }
@@ -86,6 +86,61 @@ namespace table2image {
                 this.itemsElementNameField = value;
             }
         }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class cellType {
+        
+        private cellTypeAlign alignField;
+        
+        private string valueField;
+        
+        public cellType() {
+            this.alignField = cellTypeAlign.center;
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute(cellTypeAlign.center)]
+        public cellTypeAlign align {
+            get {
+                return this.alignField;
+            }
+            set {
+                this.alignField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlTextAttribute()]
+        public string Value {
+            get {
+                return this.valueField;
+            }
+            set {
+                this.valueField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    public enum cellTypeAlign {
+        
+        /// <remarks/>
+        center,
+        
+        /// <remarks/>
+        right,
+        
+        /// <remarks/>
+        left,
     }
     
     /// <remarks/>

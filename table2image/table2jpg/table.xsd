@@ -11,12 +11,30 @@
         <xs:element name="tr" maxOccurs="unbounded">
           <xs:complexType>
             <xs:choice maxOccurs="unbounded">
-              <xs:element name="th" type="xs:string"/>
-              <xs:element name="td" type="xs:string"/>
+              <xs:element name="th" type="cellType" />
+              <xs:element name="td" type="cellType"/>
             </xs:choice>
           </xs:complexType>
         </xs:element>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  
+  <xs:complexType name="cellType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute ref="align" default="center" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+    
+  <xs:attribute name="align">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="center"/>
+        <xs:enumeration value="right"/>
+        <xs:enumeration value="left"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
 </xs:schema>

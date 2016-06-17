@@ -175,13 +175,24 @@ namespace table2image
                     int j = 0;
                     for(; j < tr.Items.Count(); j++)
                     {
-                        Content[i, j] = new Cell() { Text = tr.Items[j], Head = tr.ItemsElementName[j] == ItemsChoiceType.th };
+                        Content[i, j] = new Cell() { Text = tr.Items[j].Value, Head = tr.ItemsElementName[j] == ItemsChoiceType.th, Align = ConvertAlign(tr.Items[j].align) };
                     }
                     for (; j < columnCount; j++)
                     {
                         Content[i, j] = new Cell();
                     }
                     i++;
+                }
+            }
+
+            public static Cell.alignment ConvertAlign(cellTypeAlign arg)
+            {
+                switch (arg)
+                {
+                    case cellTypeAlign.right: return Cell.alignment.right;
+                    case cellTypeAlign.left: return Cell.alignment.left; 
+                    default:
+                    case cellTypeAlign.center: return Cell.alignment.center; 
                 }
             }
 
@@ -259,7 +270,15 @@ namespace table2image
                     for (int j = 0; j < Content.GetLength(1); j++)
                     {
                         var cell = Content[i, j];
-                        g.DrawString(cell.Text, cell.Head ? CellHeadFont : CellFont, Brushes.Black, x + (int)(ColumnMaxSize[j] / 2.0 - cell.Width / 2.0 + spacingX / 2.0), y + (int)(RowMaxSize[i] / 2.0 - cell.Height / 2.0 + spacingY / 2.0));
+                        float cellX = 0;
+                        switch (cell.Align)
+                        {
+                            case Cell.alignment.left: cellX = x + spacingX / 2.0f; break;
+                            case Cell.alignment.right:cellX = x + ColumnMaxSize[j] + spacingX / 2.0f - cell.Width;break;
+                            default:
+                            case Cell.alignment.center:cellX = x + (int)(ColumnMaxSize[j] / 2.0 - cell.Width / 2.0 + spacingX / 2.0);break;
+                        }
+                        g.DrawString(cell.Text, cell.Head ? CellHeadFont : CellFont, Brushes.Black, cellX, y + (int)(RowMaxSize[i] / 2.0 - cell.Height / 2.0 + spacingY / 2.0));
                         x += ColumnMaxSize[j] + spacingX;
                     }
                     x = (canvasWidth - tableWidth) / 2 + spacingX / 2;
@@ -277,6 +296,12 @@ namespace table2image
                 public bool Head = false;
                 public float Width;
                 public float Height;
+                public alignment Align;
+
+                public enum alignment
+                {
+                    left,right,center
+                }
             }
         }
     }
